@@ -1519,8 +1519,8 @@ MonoBehaviour:
   piecePrefabs:
   - {fileID: 6660755369995159751, guid: c667463fa44396749af2bef6cdebffcb, type: 3}
   - {fileID: 1895522786965951040, guid: e7eb361f295f29f4199fdf5386769977, type: 3}
-  - {fileID: 9112431079767089055, guid: 271f374b5a139fa4884fa497623ebfb4, type: 3}
   - {fileID: 5043930663926089568, guid: 184c060ac795334429d959a21bafe2d2, type: 3}
+  - {fileID: 9112431079767089055, guid: 271f374b5a139fa4884fa497623ebfb4, type: 3}
   - {fileID: 3379234389218496322, guid: 981bf8e3fdac21c40a46f71ab9536643, type: 3}
 --- !u!4 &1094896413
 Transform:

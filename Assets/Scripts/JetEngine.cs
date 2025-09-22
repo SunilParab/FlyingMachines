@@ -23,7 +23,7 @@ public class JetEngine : InteractablePiece
     {
         if (fuelRemaining > 0 && amountToApply > 0)
         {
-            rb.AddForce(transform.up * force * amountToApply,ForceMode2D.Force);
+            rb.AddForce(transform.right * force * amountToApply, ForceMode2D.Force);
             fuelRemaining -= amountToApply;
             amountToApply = 0;
         }
@@ -31,7 +31,7 @@ public class JetEngine : InteractablePiece
 
     void Update()
     {
-        if (Input.GetKey(myKey))
+        if (Input.GetKey(myKey) && active)
         {
             amountToApply += Time.deltaTime;
         }

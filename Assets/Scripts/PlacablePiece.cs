@@ -12,6 +12,8 @@ public class PlacablePiece : MonoBehaviour
     [SerializeField]
     KeySetter keySetter;
 
+    List<FixedJoint2D> otherJoints = new List<FixedJoint2D>();
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -38,6 +40,18 @@ public class PlacablePiece : MonoBehaviour
 
     public void Pickup()
     {
+        FixedJoint2D[] myJoints = GetComponents<FixedJoint2D>();
+
+        for (int i = myJoints.Length-1; i >= 0; i--)
+        {
+            Destroy(myJoints[i]);
+        }
+
+        for (int i = otherJoints.Count-1; i >= 0; i--)
+        {
+            Destroy(otherJoints[i]);
+            otherJoints.RemoveAt(i);
+        }
 
     }
 
@@ -49,6 +63,13 @@ public class PlacablePiece : MonoBehaviour
     public void Activate()
     {
         rb.bodyType = RigidbodyType2D.Dynamic;
+
+        InteractablePiece inter = GetComponent<InteractablePiece>();
+        if (inter != null)
+        {
+            inter.Activate();
+        }
+
     }
 
 }

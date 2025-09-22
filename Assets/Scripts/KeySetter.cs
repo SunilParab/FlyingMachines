@@ -21,12 +21,14 @@ public class KeySetter : MonoBehaviour
     {
         active = true;
         Picking = true;
+        PiecePlacer.ActivateKeyText();
     }
 
     public void Deactivate()
     {
         active = false;
         Picking = false;
+        PiecePlacer.DeactivateKeyText();
     }
 
     // Update is called once per frame

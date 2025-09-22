@@ -5,6 +5,8 @@ public class KeySetter : MonoBehaviour
 {
     KeyCode chosenKey;
 
+    public static bool Picking;
+
     [SerializeField] bool active;
 
     KeyCode[] possibleKeys = {KeyCode.Q,KeyCode.W,
@@ -18,11 +20,13 @@ public class KeySetter : MonoBehaviour
     public void Activate()
     {
         active = true;
+        Picking = true;
     }
 
     public void Deactivate()
     {
         active = false;
+        Picking = false;
     }
 
     // Update is called once per frame
@@ -47,7 +51,8 @@ public class KeySetter : MonoBehaviour
     void SetKey(KeyCode targetKey)
     {
         chosenKey = targetKey;
-        active = false;
+        GetComponent<InteractablePiece>().myKey = targetKey;
+        Deactivate();
     }
 
 }

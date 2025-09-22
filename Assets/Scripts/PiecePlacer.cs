@@ -7,33 +7,54 @@ public class PiecePlacer : MonoBehaviour
     [SerializeField]
     PlacablePiece curPiece;
 
+    [SerializeField]
     List<PlacablePiece> placedPieces = new List<PlacablePiece>();
 
     void Update()
     {
-
-        if (curPiece != null)
-        {
-            Vector2 newPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            curPiece.transform.position = newPos;
-        }
-
-        if (Input.GetMouseButtonDown(0)) {
+        if (!KeySetter.Picking) {
             if (curPiece != null)
             {
-                curPiece.Place();
-                curPiece = null;
-            }
-            else
-            {
-                curPiece = Pickup();
-                if (curPiece != null)
-                {
-                    curPiece.Pickup();
+                Vector2 newPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                curPiece.transform.position = newPos;
+
+                if (Input.GetKey(KeyCode.R)) {
+                    curPiece.transform.Rotate(new Vector3(0,0,-Time.deltaTime*100));
                 }
             }
-        }
 
+            if (Input.GetMouseButtonDown(0)) {
+                if (curPiece != null)
+                {
+                    Place();
+                }
+                else
+                {
+                    curPiece = Pickup();
+                    if (curPiece != null)
+                    {
+                        curPiece.Pickup();
+                    }
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.Return)) {
+                print("act");
+                if (curPiece!= null) {
+                    Place();
+                }
+
+                Activate();
+                Destroy(gameObject);
+            }
+        }
+    }
+
+    void Place() {      
+        placedPieces.Add(curPiece);
+
+        curPiece.Place();
+        curPiece = null;
     }
 
     PlacablePiece Pickup()

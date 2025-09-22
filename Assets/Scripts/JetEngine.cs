@@ -34,8 +34,6 @@ public class JetEngine : InteractablePiece
         if (Input.GetKey(myKey))
         {
             amountToApply += Time.deltaTime;
-            print(amountToApply);
-            print("Left: "+fuelRemaining);
         }
     }
 }
